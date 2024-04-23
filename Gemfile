@@ -6,7 +6,7 @@ ruby "3.3.0"
 gem "rails", "~> 7.1.3", ">= 7.1.3.2"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
-gem "sprockets-rails"
+gem "sprockets-rails", ">= 2.3.2"
 
 # Use sqlite3 as the database for Active Record
 gem "sqlite3", "~> 1.4"
@@ -65,3 +65,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+# custom
+gem 'bootstrap', '~> 5.3', '>= 5.3.2'
+gem 'dartsass-sprockets', '~> 3.1'
