@@ -1,0 +1,27 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>My To-Do List</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>To-Do Item</th>
+      <th>Completed</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @lists.each do |list| %>
+      <tr>
+        <td><%= list.description %></td>
+        <td><%= list.completed %></td>
+        <td><%= link_to "Show", list %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to "Add To-Do item", new_list_path %>
