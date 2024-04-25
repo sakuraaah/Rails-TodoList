@@ -15,17 +15,18 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  host: localhost
-  port: 5432
+  # host: localhost
+  # port: 5432
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
-  database: <%= Rails.application.credentials.DB_NAME.dev_db %>
-  username: <%= Rails.application.credentials.DB_USER.dev_db %>
-  password: <%= Rails.application.credentials.DB_PASS.dev_db %>
+  database: rails_todolist_development
+  # database: <%= Rails.application.credentials.DB_NAME.dev_db %>
+  # username: <%= Rails.application.credentials.DB_USER.dev_db %>
+  # password: <%= Rails.application.credentials.DB_PASS.dev_db %>
 
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
@@ -59,9 +60,10 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: <%= Rails.application.credentials.DB_NAME.test_db %>
-  username: <%= Rails.application.credentials.DB_USER.test_db %>
-  password: <%= Rails.application.credentials.DB_PASS.test_db %>
+  database: rails_todolist_test
+  # database: <%= Rails.application.credentials.DB_NAME.test_db %>
+  # username: <%= Rails.application.credentials.DB_USER.test_db %>
+  # password: <%= Rails.application.credentials.DB_PASS.test_db %>
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -85,6 +87,9 @@ test:
 #
 production:
   <<: *default
-  database: <%= Rails.application.credentials.DB_NAME.prod_db %>
-  username: <%= Rails.application.credentials.DB_USER.prod_db %>
-  password: <%= Rails.application.credentials.DB_PASS.prod_db %>
+  database: rails_todolist_production
+  username: todo_user
+  password: password123
+  # database: <%= Rails.application.credentials.DB_NAME.prod_db %>
+  # username: <%= Rails.application.credentials.DB_USER.prod_db %>
+  # password: <%= Rails.application.credentials.DB_PASS.prod_db %>
