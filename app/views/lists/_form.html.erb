@@ -1,27 +1,33 @@
-<%= form_with(model: list) do |form| %>
-  <% if list.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(list.errors.count, "error") %> prohibited this list from being saved:</h2>
+<% submit_label = list.new_record? ? "Create To-Do Item" : "Update To-Do Item" %>
 
-      <ul>
-        <% list.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<div class="card my-4" style="width: 18rem;">
+  <div class="card-body">
+    <%= form_with(model: list) do |form| %>
+      <% if list.errors.any? %>
+        <div style="color: red">
+          <h2><%= pluralize(list.errors.count, "error") %> prohibited this list from being saved:</h2>
 
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_field :description %>
+          <ul>
+            <% list.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="mb-3">
+        <%= form.label :description, class: 'form-label' %>
+        <%= form.text_field :description, class: 'form-control' %>
+      </div>
+
+      <div class="form-check mb-3">
+        <%= form.label :completed, class: 'form-check-label' %>
+        <%= form.check_box :completed, class: 'form-check-input' %>
+      </div>
+
+      <div>
+        <%= form.submit submit_label, class: 'btn btn-primary' %>
+      </div>
+    <% end %>
   </div>
-
-  <div>
-    <%= form.label :completed, style: "display: block" %>
-    <%= form.check_box :completed %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

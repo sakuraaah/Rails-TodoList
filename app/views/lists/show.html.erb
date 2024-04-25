@@ -1,8 +1,20 @@
-<%= render @list %>
+<h1>View To-Do Item</h1>
+
+<div class="card my-4" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">
+      <%= @list.description %>
+    </h5>
+
+    <p class="card-text">
+      Completed: <%= @list.completed %>
+    </p>
+
+    <%= button_to "Delete", @list, method: :delete, form: {data: {turbo_confirm: 'Are you sure?'}}, class: 'btn btn-danger mt-2' %>
+  </div>
+</div>
 
 <div>
-  <%= link_to "Edit this list", edit_list_path(@list) %> |
-  <%= link_to "Back to lists", lists_path %>
-
-  <%= button_to "Destroy this list", @list, method: :delete %>
+  <%= link_to "Edit", edit_list_path(@list), class: 'link-secondary' %> |
+  <%= link_to "Back", lists_path, class: 'link-secondary' %>
 </div>
