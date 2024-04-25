@@ -8,5 +8,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  #custom
   root "lists#index"
+  delete "home/remove_completed_tasks"
+  delete "home/remove_all_tasks"
 end
