@@ -1,5 +1,3 @@
-<h1>My To-Do List</h1>
-
 <table class="table table-bordered my-4">
   <tbody>
     <% @lists.each do |list| %>
@@ -10,9 +8,14 @@
             <%= link_to list.description, edit_list_path(list), class: 'link-secondary striker' %>
           </td>
           <td class="align-middle">
-            <% link_to "Show", list %>
-            <% link_to "Edit", edit_list_path(list) %>
-            <%= button_to "Delete", list, method: :delete, form: {data: {turbo_confirm: 'Are you sure?'}}, class: 'btn btn-danger btn-sm' %>
+            <%= form_with(model: list) do |form| %>
+              <%= form.text_field :description, class: 'd-none' %>
+              <%= form.check_box :completed, checked: false, class: 'd-none' %>
+              <%= form.submit "Uncheck", class: 'btn btn-outline-primary btn-sm' %>
+            <% end %>
+          </td>
+          <td class="align-middle">
+            <%= button_to "Delete", list, method: :delete, form: {data: {turbo_confirm: 'Are you sure?'}}, class: 'btn btn-outline-danger btn-sm' %>
           </td>
         </tr>
       <% else %>
@@ -21,9 +24,14 @@
             <%= link_to list.description, edit_list_path(list), class: 'link-secondary' %>
           </td>
           <td class="align-middle">
-            <% link_to "Show", list %>
-            <% link_to "Edit", edit_list_path(list) %>
-            <%= button_to "Delete", list, method: :delete, form: {data: {turbo_confirm: 'Are you sure?'}}, class: 'btn btn-danger btn-sm' %>
+            <%= form_with(model: list) do |form| %>
+              <%= form.text_field :description, class: 'd-none' %>
+              <%= form.check_box :completed, checked: true, class: 'd-none' %>
+              <%= form.submit "Complete", class: 'btn btn-outline-primary btn-sm' %>
+            <% end %>
+          </td>
+          <td class="align-middle">
+            <%= button_to "Delete", list, method: :delete, form: {data: {turbo_confirm: 'Are you sure?'}}, class: 'btn btn-outline-danger btn-sm' %>
           </td>
         </tr>
       <% end %>
@@ -31,8 +39,5 @@
   </tbody>
 </table>
 
-<div class="card text-center mx-auto" style="width: 18rem;">
-  <div class="card-body">
-    <%= render "form_index", list: @list %>
-  </div>
-</div>
+<%= button_to "Delete All Tasks", home_remove_all_tasks_path, method: :delete, form: {data: {turbo_confirm: 'Are you sure?'}}, class: 'btn btn-danger mb-2' %>
+<%= button_to "Delete Completed Tasks", home_remove_completed_tasks_path, method: :delete, form: {data: {turbo_confirm: 'Are you sure?'}}, class: 'btn btn-outline-danger' %>
